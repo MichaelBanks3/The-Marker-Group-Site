@@ -7,50 +7,98 @@
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>The Marker Group</h1>
-            <ul>
+    <header class="site-header">
+        <div class="container nav">
+            <a href="#" class="logo">The Marker Group</a>
+            <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
+        </div>
     </header>
 
     <main>
-        <section id="hero">
-            <h2>Strategic Consulting for Higher Education Partnerships</h2>
-            <p>
-                The Marker Group helps organizations navigate the higher education landscape through deep industry relationships, strategic insight, and proven sales leadership.
-            </p>
-            <a href="contact">Get in Touch</a>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">Higher Education Strategy & Partnerships</p>
+                    <h1>Strategic consulting for organizations navigating the higher education market.</h1>
+                    <p class="hero-text">
+                        The Marker Group helps organizations grow in higher education through strategic insight,
+                        trusted relationships, and decades of enterprise sales leadership.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                        <a href="#services" class="btn btn-secondary">View Services</a>
+                    </div>
+                </div>
+
+                <aside class="hero-panel">
+                    <h2>What we bring</h2>
+                    <ul>
+                        <li>Deep higher ed market knowledge</li>
+                        <li>Strategic partnership guidance</li>
+                        <li>Go-to-market advisory</li>
+                        <li>Executive-level relationship capital</li>
+                    </ul>
+                </aside>
+            </div>
         </section>
 
-        <section id="about">
-            <h2>About</h2>
-            <p>
-                I'm Trevor Banks, and I'm pretty much a beast. you should pay me $. 
-            </p>
+        <section id="about" class="section">
+            <div class="container narrow">
+                <p class="section-label">About</p>
+                <h2>Built on real higher ed experience.</h2>
+                <p>
+                    The Marker Group was founded to help organizations better understand and succeed in the higher
+                    education ecosystem. With years of experience building relationships, shaping strategy, and closing
+                    major deals in the space, we help clients move faster and more intelligently.
+                </p>
+            </div>
         </section>
 
-        <section id="services">
-            <h2>Services</h2>
-            <p>
-                I offer the highest level of higher ed GTM consulting you will find. I know all the things and people. 
-            </p>
+        <section id="services" class="section">
+            <div class="container">
+                <p class="section-label">Services</p>
+                <h2>How we help</h2>
+
+                <div class="cards">
+                    <article class="card">
+                        <h3>Go-to-Market Strategy</h3>
+                        <p>Positioning, market entry, and practical sales strategy tailored to higher education.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Partnership Advisory</h3>
+                        <p>Guidance on building and expanding relationships with institutions and ecosystem partners.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Executive Consulting</h3>
+                        <p>Senior-level perspective for organizations looking to sharpen direction and accelerate growth.</p>
+                    </article>
+                </div>
+            </div>
         </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>
-                Email: trevor@themarkergroup.com
-            </p>
+        <section id="contact" class="section">
+            <div class="container contact-box">
+                <div>
+                    <p class="section-label">Contact</p>
+                    <h2>Let’s start a conversation.</h2>
+                    <p>
+                        Interested in working together or learning more about The Marker Group?
+                    </p>
+                </div>
+                <a href="mailto:trevor@themarkergroup.com" class="btn btn-primary">trevor@themarkergroup.com</a>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 The Marker Group. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 The Marker Group. All rights reserved.</p>
+        </div>
     </footer>
 </body>
-</html>
