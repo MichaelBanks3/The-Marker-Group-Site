@@ -10,8 +10,8 @@
     --text: #ffffff;
     --navy-text: #0F1F3D;
     --muted: #4e5b72;
-    --accent: #1c7c7d;
-    --accent-dark: #155e5f;
+    --accent: #00A86B;
+    --accent-dark: #008554;
     --border: #dfe4ea;
     --max-width: 1120px;
     --radius: 18px;
@@ -99,14 +99,23 @@ ul {
 }
 
 .hero {
-    padding: 3rem 0 3rem;
+    padding: 4rem 0 6rem;
+    background: var(--bg);
 }
 
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 0.9fr;
-    gap: 3rem;
+.hero-content {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    max-width: 1100px;
+}
+
+.hero-logo {
+    width: 320px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2.5rem;
 }
 
 .eyebrow,
@@ -123,14 +132,6 @@ ul {
     font-size: clamp(2.8rem, 6vw, 4.8rem);
     line-height: 1.05;
     letter-spacing: -0.04em;
-    max-width: 12ch;
-    margin-bottom: 1.25rem;
-}
-
-.hero-text {
-    font-size: 1.1rem;
-    color: var(--muted);
-    max-width: 60ch;
     margin-bottom: 2rem;
 }
 
@@ -138,6 +139,7 @@ ul {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .btn {
@@ -169,39 +171,22 @@ ul {
     color: var(--text);
 }
 
-.hero-panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 2rem;
-    box-shadow: var(--shadow);
-}
-
-.hero-panel h2 {
-    color: #0F1F3D;
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.hero-panel ul {
-    display: grid;
-    gap: 1rem;
-}
-
-.hero-panel li {
-    color: var(--bg);
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.hero-panel li:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
 
 .section {
     padding: 5rem 0;
+}
+
+#about {
+    background: white;
+    color: var(--navy-text);
+}
+
+#about h2 {
+    color: var(--navy-text);
+}
+
+#about p {
+    color: var(--navy-text);
 }
 
 .section h2 {
@@ -234,6 +219,7 @@ ul {
 .card h3 {
     font-size: 1.2rem;
     margin-bottom: 0.75rem;
+    color: var(--navy-text);
 }
 
 .card p {
@@ -252,6 +238,10 @@ ul {
     gap: 2rem;
 }
 
+.contact-box h2 {
+    color: var(--navy-text);
+}
+
 .site-footer {
     border-top: 1px solid var(--border);
     padding: 2rem 0;
@@ -260,7 +250,6 @@ ul {
 }
 
 @media (max-width: 900px) {
-    .hero-grid,
     .cards,
     .contact-box {
         grid-template-columns: 1fr;
@@ -279,10 +268,15 @@ ul {
     }
 
     .hero {
-        padding-top: 4rem;
+        padding: 4rem 0 6rem;
+    }
+
+    .hero-logo {
+        width: 240px;
+        margin-bottom: 2rem;
     }
 
     .hero h1 {
-        max-width: 100%;
+        font-size: clamp(2rem, 8vw, 2.8rem);
     }
 }
