@@ -162,24 +162,6 @@ ul {
     font-weight: 300;
 }
 
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 300px;
-    background: linear-gradient(to bottom, 
-        transparent 0%,
-        rgba(10, 20, 40, 0.03) 20%,
-        rgba(10, 20, 40, 0.1) 35%,
-        rgba(10, 20, 40, 0.25) 50%,
-        rgba(10, 20, 40, 0.5) 65%,
-        rgba(10, 20, 40, 0.8) 80%,
-        #ffffff 100%);
-    pointer-events: none;
-    z-index: 5;
-}
 
 .hero-logos-background {
     position: absolute;
@@ -421,8 +403,6 @@ ul {
 #about {
     background: white;
     color: var(--navy-text);
-    margin-top: -150px;
-    padding-top: 150px;
 }
 
 #about h2 {
@@ -523,21 +503,6 @@ ul {
         font-size: 1.05rem;
     }
 
-    .hero::after {
-        height: 250px;
-        background: linear-gradient(to bottom, 
-            transparent 0%,
-            rgba(10, 20, 40, 0.05) 25%,
-            rgba(10, 20, 40, 0.2) 45%,
-            rgba(10, 20, 40, 0.5) 65%,
-            rgba(10, 20, 40, 0.8) 85%,
-            #ffffff 100%);
-    }
-    
-    #about {
-        margin-top: -100px;
-        padding-top: 100px;
-    }
 
     .logo-orbit {
         opacity: 0.1;
@@ -558,5 +523,282 @@ ul {
     .hero .eyebrow::before {
         width: 40px;
         margin-bottom: 0.75rem;
+    }
+}
+
+.mission-strip {
+    background: white;
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.mission-strip h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--navy-text);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+}
+
+.mission-strip p {
+    color: var(--navy-text);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.services-preview {
+    background: #0F1F3D;
+    color: var(--text);
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.services-preview h2 {
+    margin-bottom: 3rem;
+}
+
+.preview-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.preview-card {
+    text-align: left;
+}
+
+.preview-card h3 {
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.preview-card p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.preview-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.preview-cta .text-link {
+    font-size: 1.05rem;
+}
+
+.credibility-strip {
+    background: white;
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.credibility-heading {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+}
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 2.5rem;
+    align-items: center;
+    justify-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.logo-grid img {
+    max-height: 45px;
+    width: auto;
+    opacity: 1;
+}
+
+.page-intro {
+    background: white;
+    color: var(--navy-text);
+}
+
+.page-intro h2 {
+    color: var(--navy-text);
+}
+
+.page-intro p {
+    color: var(--navy-text);
+}
+
+.split-section {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    min-height: 600px;
+}
+
+.split-section-left {
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    padding: 5rem 4rem;
+}
+
+.split-content h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+}
+
+.split-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.split-section-right {
+    background: white;
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.service-block h3 {
+    font-size: 1.5rem;
+    color: var(--navy-text);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.service-block p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.text-link {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s ease;
+}
+
+.text-link:hover {
+    color: var(--accent-dark);
+}
+
+.service-detail-section {
+    padding: 6rem 0;
+    background: white;
+}
+
+.service-detail-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--navy-text);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.service-detail-section h3 {
+    font-size: 1.3rem;
+    color: var(--navy-text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.service-detail-section p {
+    color: var(--navy-text);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+
+.service-detail-section ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.service-detail-section li {
+    color: var(--navy-text);
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+}
+
+.service-detail-alt {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.service-detail-alt h2,
+.service-detail-alt h3,
+.service-detail-alt p,
+.service-detail-alt li {
+    color: var(--text);
+}
+
+@media (max-width: 900px) {
+    .mission-strip {
+        padding: 4rem 0;
+    }
+
+    .mission-strip h2 {
+        font-size: clamp(1.75rem, 6vw, 2.2rem);
+    }
+
+    .mission-strip p {
+        font-size: 1rem;
+    }
+
+    .services-preview {
+        padding: 4rem 0;
+    }
+
+    .preview-cards {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .services-preview h2 {
+        margin-bottom: 2rem;
+    }
+
+    .credibility-strip {
+        padding: 4rem 0;
+    }
+
+    .logo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 2rem;
+    }
+
+    .logo-grid img {
+        max-height: 40px;
+    }
+
+    .split-section {
+        grid-template-columns: 1fr;
+    }
+
+    .split-section-left,
+    .split-section-right {
+        padding: 3rem 2rem;
+    }
+
+    .split-section-right {
+        gap: 2rem;
+    }
+
+    .service-detail-section {
+        padding: 4rem 0;
     }
 }
