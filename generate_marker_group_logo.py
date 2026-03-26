@@ -42,8 +42,8 @@ def get_visual_top_bottom(font, text, draw, y_origin=0):
 def make_logo(bg_color, fg_color, fg_muted_rgba, flag_fill_rgba, filename, transparent=False):
 
     # ── FONTS ─────────────────────────────────────────
-    font_sub    = ImageFont.truetype(SANS_PATH,  s(28))   # THE & GROUP (increased size)
-    font_marker = ImageFont.truetype(SERIF_PATH, s(62))   # Marker
+    font_sub    = ImageFont.truetype(SANS_PATH,  s(48))   # THE & GROUP (increased size)
+    font_marker = ImageFont.truetype(SERIF_PATH, s(95))   # Marker
 
     # ── MEASURE TEXT ──────────────────────────────────
     tmp = Image.new('RGBA', (s(800), s(400)))
@@ -77,14 +77,14 @@ def make_logo(bg_color, fg_color, fg_muted_rgba, flag_fill_rgba, filename, trans
 
     # ── PIN DIMENSIONS ────────────────────────────────
     flag_w, flag_h  = s(42), s(30)
-    pin_gap         = s(60)         # space between pole and text
+    pin_gap         = s(90)         # space between pole and text (increased for wider logo)
     pin_area_w      = flag_w + s(6)
 
     content_w = pin_area_w + pin_gap + marker_w
 
     # ── CANVAS ────────────────────────────────────────
-    pad_x = s(55)
-    pad_y = s(48)
+    pad_x = s(90)
+    pad_y = s(40)
     dot_extra = s(22)
 
     W = content_w + pad_x * 2

@@ -5,10 +5,10 @@
 }
 
 :root {
-    --bg: #0f144d;
+    --bg: #0F1F3D;
     --surface: #ffffff;
     --text: #ffffff;
-    --navy-text: #0f144d;
+    --navy-text: #0F1F3D;
     --muted: #4e5b72;
     --accent: #1c7c7d;
     --accent-dark: #155e5f;
@@ -23,10 +23,14 @@ html {
 }
 
 body {
-    font-family: Inter, Arial, sans-serif;
+    font-family: 'Outfit', sans-serif;
     line-height: 1.6;
     color: var(--text);
     background: var(--bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
 }
 
 img {
@@ -64,7 +68,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.1rem 0;
+    padding: 0.8rem 0;
 }
 
 .logo {
@@ -72,6 +76,11 @@ ul {
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 0.02em;
+}
+
+.logo img {
+    height: 80px;
+    width: auto;
 }
 
 .nav-links {
@@ -169,7 +178,7 @@ ul {
 }
 
 .hero-panel h2 {
-    color: #0f144d;
+    color: #0F1F3D;
     font-size: 1.25rem;
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--border);
