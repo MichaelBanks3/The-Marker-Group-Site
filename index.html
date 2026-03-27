@@ -3,150 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Marker Group LLC</title>
+    <title>The Marker Group — Higher Education GTM Consulting</title>
+    <meta name="description" content="The Marker Group helps education technology companies build and execute go-to-market strategies that win in higher education.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container nav">
-            <a href="index.html" class="logo"><img src="images/marker-group-logo-light.png" alt="The Marker Group"></a>
-            <ul class="nav-links">
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+    <!-- Header -->
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="images/marker-group-logo-dark.png" alt="The Marker Group" class="logo-dark">
+                <img src="images/marker-group-logo-light.png" alt="The Marker Group" class="logo-light">
+            </a>
+            <nav class="nav-desktop">
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="#contact" class="nav-cta">Get in Touch</a>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
+        <nav class="nav-mobile">
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="#contact" class="nav-cta">Get in Touch</a>
+        </nav>
     </header>
 
     <main>
+
+        <!-- Hero -->
         <section class="hero">
-            <div class="hero-logos-background">
-                <div class="logo-orbit logo-orbit-1">
-                    <img src="images/logos/uga.png" alt="University System of Georgia">
-                </div>
-                <div class="logo-orbit logo-orbit-2">
-                    <img src="images/logos/cuny.png" alt="CUNY">
-                </div>
-                <div class="logo-orbit logo-orbit-3">
-                    <img src="images/logos/uf.png" alt="University of Florida">
-                </div>
-                <div class="logo-orbit logo-orbit-4">
-                    <img src="images/logos/arkansas.jpeg" alt="University System of Arkansas">
-                </div>
-                <div class="logo-orbit logo-orbit-5">
-                    <img src="images/logos/alabama.png" alt="University of Alabama">
-                </div>
-                <div class="logo-orbit logo-orbit-6">
-                    <img src="images/logos/penn.png" alt="University of Pennsylvania">
-                </div>
-                <div class="logo-orbit logo-orbit-7">
-                    <img src="images/logos/ole miss.jpeg" alt="Ole Miss">
-                </div>
-                <div class="logo-orbit logo-orbit-8">
-                    <img src="images/logos/clemson.jpeg" alt="Clemson University">
-                </div>
-                <div class="logo-orbit logo-orbit-9">
-                    <img src="images/logos/ohiostate.png" alt="Ohio State University">
-                </div>
-                <div class="logo-orbit logo-orbit-10">
-                    <img src="images/logos/michigan.png" alt="University of Michigan">
-                </div>
-                <div class="logo-orbit logo-orbit-11">
-                    <img src="images/logos/yale.png" alt="Yale University">
-                </div>
-                <div class="logo-orbit logo-orbit-12">
-                    <img src="images/logos/northeastern.png" alt="Northeastern University">
-                </div>
-                <div class="logo-orbit logo-orbit-13">
-                    <img src="images/logos/jh.png" alt="Johns Hopkins University">
-                </div>
-                <div class="logo-orbit logo-orbit-14">
-                    <img src="images/logos/maryland.png" alt="University of Maryland">
-                </div>
-            </div>
-            <div class="container hero-content">
-                <p class="eyebrow">Higher Education GTM Consulting</p>
-                <h1>Trusted Sales Leadership Across Higher Education</h1>
-                <p class="hero-subtitle">Driving growth through deep market knowledge, executive relationships, and proven go-to-market strategy across the higher education landscape.</p>
-            </div>
-        </section>
-
-        <section class="mission-strip section">
-            <div class="container narrow">
-                <h2>Strategic growth for the higher education market.</h2>
-                <p>
-                    The Marker Group helps education technology companies navigate the complexity of selling into higher education. We provide go-to-market strategy, partnership guidance, and executive advisory grounded in deep market knowledge and proven experience.
-                </p>
-                <a href="about.html" class="text-link">Learn more →</a>
-            </div>
-        </section>
-
-        <section class="services-preview section">
+            <div class="hero-bg-texture"></div>
             <div class="container">
-                <p class="section-label">Services</p>
-                <h2>How we help</h2>
-                
-                <div class="preview-cards">
-                    <article class="preview-card">
-                        <h3>Go-to-Market Strategy</h3>
-                        <p>Positioning, market entry, and practical sales strategy tailored to higher education.</p>
-                    </article>
-
-                    <article class="preview-card">
-                        <h3>Partnership Advisory</h3>
-                        <p>Guidance on building and expanding relationships with institutions and ecosystem partners.</p>
-                    </article>
-
-                    <article class="preview-card">
-                        <h3>Executive Consulting</h3>
-                        <p>Senior-level perspective for organizations looking to sharpen direction and accelerate growth.</p>
-                    </article>
-                </div>
-                
-                <div class="preview-cta">
-                    <a href="services.html" class="text-link">View all services →</a>
+                <div class="hero-layout">
+                    <div class="hero-content">
+                        <p class="hero-label">Higher Education GTM Consulting</p>
+                        <h1>Your next chapter in higher ed <em>starts here.</em></h1>
+                        <p class="hero-subtitle">We help education technology companies navigate the complexity of selling into higher education — with the relationships, strategy, and market knowledge that only come from decades in the space.</p>
+                        <div class="hero-actions">
+                            <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+                            <a href="services.html" class="btn btn-ghost">Our Services</a>
+                        </div>
+                    </div>
+                    <div class="hero-aside">
+                        <div class="hero-stat-card">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Years in Higher Ed SaaS</span>
+                        </div>
+                        <div class="hero-stat-card">
+                            <span class="stat-number">100s</span>
+                            <span class="stat-label">of Institutional Relationships</span>
+                        </div>
+                        <div class="hero-stat-card">
+                            <span class="stat-number">IC to VP</span>
+                            <span class="stat-label">Full Sales Lifecycle Experience</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="credibility-strip section">
+        <!-- Trust Bar -->
+        <section class="trust-bar">
             <div class="container">
-                <p class="credibility-heading">Trusted by institutions across higher education</p>
-                <div class="logo-grid">
-                    <img src="images/logos/yale.png" alt="Yale University">
-                    <img src="images/logos/michigan.png" alt="University of Michigan">
-                    <img src="images/logos/ohiostate.png" alt="Ohio State University">
-                    <img src="images/logos/penn.png" alt="University of Pennsylvania">
-                    <img src="images/logos/northeastern.png" alt="Northeastern University">
-                    <img src="images/logos/uf.png" alt="University of Florida">
-                    <img src="images/logos/clemson.jpeg" alt="Clemson University">
-                    <img src="images/logos/jh.png" alt="Johns Hopkins University">
-                    <img src="images/logos/alabama.png" alt="University of Alabama">
-                    <img src="images/logos/maryland.png" alt="University of Maryland">
+                <p class="trust-label">Proven experience selling into leading institutions</p>
+                <div class="trust-logos">
+                    <div class="trust-track">
+                        <img src="images/logos/yale.png" alt="Yale University">
+                        <img src="images/logos/michigan.png" alt="University of Michigan">
+                        <img src="images/logos/ohiostate.png" alt="Ohio State University">
+                        <img src="images/logos/penn.png" alt="University of Pennsylvania">
+                        <img src="images/logos/northeastern.png" alt="Northeastern University">
+                        <img src="images/logos/uf.png" alt="University of Florida">
+                        <img src="images/logos/clemson.jpeg" alt="Clemson University">
+                        <img src="images/logos/jh.png" alt="Johns Hopkins University">
+                        <img src="images/logos/alabama.png" alt="University of Alabama">
+                        <img src="images/logos/maryland.png" alt="University of Maryland">
+                        <img src="images/logos/uga.png" alt="University of Georgia">
+                        <img src="images/logos/cuny.png" alt="CUNY">
+                        <img src="images/logos/arkansas.jpeg" alt="University of Arkansas">
+                        <img src="images/logos/ole miss.jpeg" alt="Ole Miss">
+                        <!-- Duplicate for seamless loop -->
+                        <img src="images/logos/yale.png" alt="Yale University">
+                        <img src="images/logos/michigan.png" alt="University of Michigan">
+                        <img src="images/logos/ohiostate.png" alt="Ohio State University">
+                        <img src="images/logos/penn.png" alt="University of Pennsylvania">
+                        <img src="images/logos/northeastern.png" alt="Northeastern University">
+                        <img src="images/logos/uf.png" alt="University of Florida">
+                        <img src="images/logos/clemson.jpeg" alt="Clemson University">
+                        <img src="images/logos/jh.png" alt="Johns Hopkins University">
+                        <img src="images/logos/alabama.png" alt="University of Alabama">
+                        <img src="images/logos/maryland.png" alt="University of Maryland">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section">
-            <div class="container contact-box">
-                <div>
-                    <p class="section-label">Contact</p>
-                    <h2>Let’s start a conversation.</h2>
-                    <p>
-                        Interested in working together or learning more about The Marker Group?
-                    </p>
+        <!-- About / Story -->
+        <section class="story-section" id="story">
+            <div class="container">
+                <div class="story-layout">
+                    <div class="story-left">
+                        <p class="section-label">The Marker Group</p>
+                        <h2>Built on two decades of higher ed sales leadership.</h2>
+                    </div>
+                    <div class="story-right">
+                        <p class="story-lead">The higher education market doesn't reward shortcuts. Institutional buying cycles are long, stakeholders are many, and trust is everything.</p>
+                        <p>The Marker Group was founded by a veteran sales leader with 20+ years of experience selling enterprise SaaS into higher education — primarily with Workday. From individual contributor to sales management, he's built pipeline, closed transformational deals, and helped teams consistently exceed targets across research universities, state systems, and private institutions alike.</p>
+                        <p>Now, The Marker Group brings that hard-won expertise to education technology companies looking to enter, expand, or accelerate in the higher ed market.</p>
+                        <a href="about.html" class="text-link">More about our approach <span class="arrow">&rarr;</span></a>
+                    </div>
                 </div>
-                <a href="mailto:trevor@themarkergroup.com" class="btn btn-primary">trevor@themarkergroup.com</a>
             </div>
         </section>
+
+        <!-- Services -->
+        <section class="services-section" id="services">
+            <div class="container">
+                <div class="services-header">
+                    <p class="section-label">Services</p>
+                    <h2>How we help you win.</h2>
+                    <p class="services-intro">Every engagement is tailored to where you are in your higher ed journey — from first market entry to scaling an established presence.</p>
+                </div>
+
+                <div class="services-list">
+                    <a href="services.html#gtm" class="service-item">
+                        <div class="service-number">01</div>
+                        <div class="service-body">
+                            <h3>Go-to-Market Strategy</h3>
+                            <p>Market entry, positioning, sales process design, and segment strategy built specifically for higher education buyers. We help you build the playbook — then execute it.</p>
+                        </div>
+                        <span class="service-arrow">&rarr;</span>
+                    </a>
+
+                    <a href="services.html#partnerships" class="service-item">
+                        <div class="service-number">02</div>
+                        <div class="service-body">
+                            <h3>Partnership Advisory</h3>
+                            <p>Strategic partnership identification, design, and activation with institutions, associations, and ecosystem players. We help you build relationships that create real leverage.</p>
+                        </div>
+                        <span class="service-arrow">&rarr;</span>
+                    </a>
+
+                    <a href="services.html#consulting" class="service-item">
+                        <div class="service-number">03</div>
+                        <div class="service-body">
+                            <h3>Executive Consulting</h3>
+                            <p>Senior-level advisory for leadership teams navigating critical growth decisions — from organizational design and team development to board-level GTM reporting.</p>
+                        </div>
+                        <span class="service-arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Section -->
+        <section class="why-section">
+            <div class="container">
+                <div class="why-header">
+                    <p class="section-label">Why The Marker Group</p>
+                    <h2>The difference is depth.</h2>
+                </div>
+                <div class="why-grid">
+                    <div class="why-item">
+                        <h3>Operator, Not Observer</h3>
+                        <p>We've carried a bag, built territories, led teams, and closed deals. Our advice comes from doing the work — not watching from the sidelines.</p>
+                    </div>
+                    <div class="why-item">
+                        <h3>Higher Ed Native</h3>
+                        <p>We understand institutional procurement, the role of governance, the influence of consortia, and the pace at which higher ed moves. No learning curve.</p>
+                    </div>
+                    <div class="why-item">
+                        <h3>Relationships That Matter</h3>
+                        <p>Decades of trust built across research universities, state systems, community colleges, and private institutions. We know the people, not just the personas.</p>
+                    </div>
+                    <div class="why-item">
+                        <h3>Strategic & Tactical</h3>
+                        <p>We don't just hand you a strategy deck. We help you build the engine — from lead qualification frameworks to executive engagement playbooks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / Contact -->
+        <section class="cta-section" id="contact">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to accelerate your higher ed strategy?</h2>
+                    <p>Whether you're entering the market for the first time or looking to scale what's working, we'd welcome the conversation.</p>
+                    <a href="mailto:trevor@themarkergroup.com" class="btn btn-primary btn-lg">trevor@themarkergroup.com</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 The Marker Group. All rights reserved.</p>
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="images/marker-group-logo-dark.png" alt="The Marker Group" class="footer-logo">
+                    <p>&copy; 2026 The Marker Group LLC. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile nav toggle
+        const toggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.querySelector('.nav-mobile');
+        const header = document.getElementById('site-header');
+
+        toggle.addEventListener('click', () => {
+            const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', !isOpen);
+            mobileNav.classList.toggle('is-open');
+        });
+
+        // Close mobile nav on link click
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggle.setAttribute('aria-expanded', 'false');
+                mobileNav.classList.remove('is-open');
+            });
+        });
+
+        // Sticky header
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            header.classList.toggle('is-scrolled', scrollY > 50);
+            lastScroll = scrollY;
+        }, { passive: true });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.service-item, .why-item, .story-left, .story-right, .hero-stat-card');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        reveals.forEach(el => revealObserver.observe(el));
+    </script>
+
 </body>
+</html>
