@@ -8,6 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta property="og:title" content="About — The Marker Group">
+    <meta property="og:description" content="Founded on 20+ years of higher education SaaS sales leadership. Learn about The Marker Group's approach to GTM consulting.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/og-image.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -56,6 +61,7 @@
                         <h2>Two decades of selling into higher ed — from the front lines to the boardroom.</h2>
                         <p>The Marker Group was founded by a veteran sales leader who spent 20+ years building, leading, and scaling SaaS sales organizations in the higher education market — primarily with Workday, one of the most consequential technology platforms in the space.</p>
                         <p>From carrying a bag as an individual contributor to leading high-performing sales teams, he's navigated every stage of the sales lifecycle: territory development, executive engagement, complex procurement cycles, and multi-year expansion strategies across research universities, state systems, and private institutions.</p>
+                        <blockquote class="founder-quote">"Our advice comes from doing the work — not watching from the sidelines."</blockquote>
                         <p>That experience — the hard-won pattern recognition, the institutional relationships, the understanding of what actually moves deals forward in higher ed — is what The Marker Group brings to every engagement.</p>
                     </div>
                     <div class="founder-highlights">
@@ -125,7 +131,8 @@
         <div class="container">
             <div class="footer-inner">
                 <div class="footer-brand">
-                    <img src="images/marker-group-logo-dark.png" alt="The Marker Group" class="footer-logo">
+                    <img src="images/marker-group-logo-light.png" alt="The Marker Group" class="footer-logo">
+                    <p class="footer-tagline">Higher education GTM consulting — built on relationships, driven by results.</p>
                     <p>&copy; 2026 The Marker Group LLC. All rights reserved.</p>
                 </div>
                 <div class="footer-links">
@@ -137,25 +144,7 @@
         </div>
     </footer>
 
-    <script>
-        const toggle = document.querySelector('.nav-toggle');
-        const mobileNav = document.querySelector('.nav-mobile');
-        const header = document.getElementById('site-header');
-        toggle.addEventListener('click', () => {
-            const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-            toggle.setAttribute('aria-expanded', !isOpen);
-            mobileNav.classList.toggle('is-open');
-        });
-        mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggle.setAttribute('aria-expanded', 'false');
-                mobileNav.classList.remove('is-open');
-            });
-        });
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('is-scrolled', window.scrollY > 50);
-        }, { passive: true });
-    </script>
+    <script src="main.js"></script>
 
 </body>
 </html>
