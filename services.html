@@ -8,6 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta property="og:title" content="Services — The Marker Group">
+    <meta property="og:description" content="Go-to-market strategy, partnership advisory, and executive consulting for education technology companies selling into higher education.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/og-image.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -68,6 +73,9 @@
                             <li>Competitive analysis and differentiation planning</li>
                             <li>Territory planning and resource allocation</li>
                         </ul>
+                        <div class="detail-callout">
+                            <p>"We don't hand you a playbook and walk away. We help you run it."</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,7 +136,8 @@
             <div class="container">
                 <h2>Let's talk about your higher ed strategy.</h2>
                 <p>Every engagement starts with a conversation. Tell us where you are and where you want to go.</p>
-                <a href="mailto:trevor@themarkergroup.com" class="btn btn-primary btn-lg">trevor@themarkergroup.com</a>
+                <a href="mailto:trevor@themarkergroup.com" class="btn btn-primary btn-lg">Start a Conversation</a>
+                <p class="cta-email">trevor@themarkergroup.com</p>
             </div>
         </section>
 
@@ -139,7 +148,8 @@
         <div class="container">
             <div class="footer-inner">
                 <div class="footer-brand">
-                    <img src="images/marker-group-logo-dark.png" alt="The Marker Group" class="footer-logo">
+                    <img src="images/marker-group-logo-light.png" alt="The Marker Group" class="footer-logo">
+                    <p class="footer-tagline">Higher education GTM consulting — built on relationships, driven by results.</p>
                     <p>&copy; 2026 The Marker Group LLC. All rights reserved.</p>
                 </div>
                 <div class="footer-links">
@@ -151,25 +161,7 @@
         </div>
     </footer>
 
-    <script>
-        const toggle = document.querySelector('.nav-toggle');
-        const mobileNav = document.querySelector('.nav-mobile');
-        const header = document.getElementById('site-header');
-        toggle.addEventListener('click', () => {
-            const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-            toggle.setAttribute('aria-expanded', !isOpen);
-            mobileNav.classList.toggle('is-open');
-        });
-        mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggle.setAttribute('aria-expanded', 'false');
-                mobileNav.classList.remove('is-open');
-            });
-        });
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('is-scrolled', window.scrollY > 50);
-        }, { passive: true });
-    </script>
+    <script src="main.js"></script>
 
 </body>
 </html>
