@@ -13,7 +13,6 @@ Creates:
 """
 
 from pathlib import Path
-import math
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -44,6 +43,7 @@ TEXT_BODY = (61, 61, 61)
 TEXT_MUTED = (107, 114, 128)
 
 SCALE = 4
+RESAMPLE = Image.Resampling.LANCZOS if hasattr(Image, "Resampling") else Image.LANCZOS
 
 
 def s(value):
@@ -66,95 +66,184 @@ def load_font(path, size):
     return ImageFont.truetype(path, size)
 
 
-def draw_thick_line(draw, x1, y1, x2, y2, thickness, color):
-    dx = x2 - x1
-    dy = y2 - y1
-    length = math.sqrt(dx * dx + dy * dy)
-    if length == 0:
-        return
-
-    px = -dy / length * thickness / 2
-    py = dx / length * thickness / 2
-    draw.polygon(
-        [
-            (x1 + px, y1 + py),
-            (x1 - px, y1 - py),
-            (x2 - px, y2 - py),
-            (x2 + px, y2 + py),
-        ],
-        fill=color,
-    )
+def rgba(color, alpha):
+    return (*color[:3], alpha)
 
 
-def draw_monogram(draw, cx, cy, size, fg_color, accent_color):
-    stroke = max(size // 12, 2)
-    monogram_width = int(size * 0.82)
-    monogram_height = int(size * 0.68)
+def mix(color_a, color_b, amount):
+    return tuple(int(color_a[index] * (1 - amount) + color_b[index] * amount) for index in range(3))
 
-    left = cx - monogram_width // 2
-    right = cx + monogram_width // 2
-    top = cy - monogram_height // 2
-    bottom = cy + monogram_height // 2
-    center_y = top + monogram_height * 0.45
 
-    draw_thick_line(draw, left, bottom, left, top + stroke, stroke, fg_color)
-    draw_thick_line(draw, left, top + stroke, cx, center_y, stroke, fg_color)
-    draw_thick_line(draw, cx, center_y, right, top + stroke, stroke, fg_color)
-    draw_thick_line(draw, right, top + stroke, right, bottom, stroke, fg_color)
+def measure_text(draw, text, font):
+    bbox = draw.textbbox((0, 0), text, font=font)
+    return bbox[2] - bbox[0], bbox[3] - bbox[1]
 
-    bar_width = int(monogram_width * 0.35)
-    bar_height = max(stroke // 2, 2)
-    bar_y = bottom + int(size * 0.1)
+
+def get_wordmark_metrics(serif_font, sans_font, variant):
+    temp = Image.new("RGBA", (s(800), s(400)), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(temp)
+    if variant == "stacked":
+        positions = {"THE": 0, "MARKER": s(26), "GROUP": s(86)}
+    else:
+        positions = {"THE": 0, "MARKER": s(22), "GROUP": s(84)}
+
+    the_bbox = draw.textbbox((0, positions["THE"]), "THE", font=sans_font)
+    marker_bbox = draw.textbbox((0, positions["MARKER"]), "MARKER", font=serif_font)
+    group_bbox = draw.textbbox((0, positions["GROUP"]), "GROUP", font=sans_font)
+
+    the_width = the_bbox[2] - the_bbox[0]
+    marker_width = marker_bbox[2] - marker_bbox[0]
+    group_width = group_bbox[2] - group_bbox[0]
+
+    top = min(the_bbox[1], marker_bbox[1], group_bbox[1])
+    bottom = max(the_bbox[3], marker_bbox[3], group_bbox[3])
+    return {
+        "the_width": the_width,
+        "marker_width": marker_width,
+        "group_width": group_width,
+        "width": max(the_width, marker_width, group_width),
+        "height": bottom - top,
+        "top": top,
+        "positions": positions,
+    }
+
+
+def draw_wordmark(draw, x, y, fg_color, muted_color, serif_font, sans_font, variant="full", centered=False):
+    metrics = get_wordmark_metrics(serif_font, sans_font, variant)
+    base_y = y - metrics["top"]
+
+    if centered:
+        the_x = x + (metrics["width"] - metrics["the_width"]) // 2
+        marker_x = x + (metrics["width"] - metrics["marker_width"]) // 2
+        group_x = x + (metrics["width"] - metrics["group_width"]) // 2
+    else:
+        the_x = x
+        marker_x = x
+        group_x = x
+
+    draw.text((the_x, base_y + metrics["positions"]["THE"]), "THE", fill=muted_color, font=sans_font)
+    draw.text((marker_x, base_y + metrics["positions"]["MARKER"]), "MARKER", fill=fg_color, font=serif_font)
+    draw.text((group_x, base_y + metrics["positions"]["GROUP"]), "GROUP", fill=muted_color, font=sans_font)
+
+    return metrics
+
+
+def draw_flag_mark(draw, left, top, width, height, pole_color, flag_color, cup_color):
+    pole_x = left + int(width * 0.24)
+    pole_top = top + int(height * 0.08)
+    pole_bottom = top + int(height * 0.84)
+    pole_width = max(int(width * 0.06), 2)
+
     draw.rounded_rectangle(
-        [cx - bar_width // 2, bar_y, cx + bar_width // 2, bar_y + bar_height],
-        radius=max(bar_height // 2, 1),
-        fill=accent_color,
+        [pole_x - pole_width // 2, pole_top, pole_x + pole_width // 2, pole_bottom],
+        radius=max(pole_width // 2, 1),
+        fill=pole_color,
+    )
+
+    flag_top = top + int(height * 0.14)
+    flag_height = int(height * 0.24)
+    flag_length = int(width * 0.62)
+    flag_x = pole_x + pole_width // 2
+    flag_points = [
+        (flag_x, flag_top),
+        (flag_x + int(flag_length * 0.34), flag_top - int(flag_height * 0.04)),
+        (flag_x + int(flag_length * 0.86), flag_top + int(flag_height * 0.18)),
+        (flag_x + flag_length, flag_top + int(flag_height * 0.42)),
+        (flag_x + int(flag_length * 0.74), flag_top + int(flag_height * 0.76)),
+        (flag_x + int(flag_length * 0.28), flag_top + int(flag_height * 0.64)),
+        (flag_x, flag_top + flag_height),
+    ]
+    draw.polygon(flag_points, fill=flag_color)
+
+    if width >= 56:
+        highlight_points = [
+            (flag_x + int(flag_length * 0.08), flag_top + int(flag_height * 0.12)),
+            (flag_x + int(flag_length * 0.38), flag_top + int(flag_height * 0.04)),
+            (flag_x + int(flag_length * 0.72), flag_top + int(flag_height * 0.19)),
+            (flag_x + int(flag_length * 0.49), flag_top + int(flag_height * 0.34)),
+            (flag_x + int(flag_length * 0.18), flag_top + int(flag_height * 0.28)),
+        ]
+        draw.polygon(highlight_points, fill=rgba(mix(flag_color[:3], WHITE, 0.38), 170))
+
+    cup_center_x = pole_x
+    cup_center_y = top + int(height * 0.92)
+    cup_radius = max(int(width * 0.07), 3)
+    inner_radius = max(cup_radius // 2, 2)
+    outline_width = max(pole_width // 2, 1)
+
+    draw.ellipse(
+        [
+            cup_center_x - cup_radius,
+            cup_center_y - cup_radius,
+            cup_center_x + cup_radius,
+            cup_center_y + cup_radius,
+        ],
+        outline=cup_color,
+        width=outline_width,
+    )
+    draw.ellipse(
+        [
+            cup_center_x - inner_radius,
+            cup_center_y - inner_radius,
+            cup_center_x + inner_radius,
+            cup_center_y + inner_radius,
+        ],
+        fill=pole_color,
     )
 
 
-def draw_wordmark(draw, x, y, fg_color, muted_color, serif_font, sans_font):
-    draw.text((x, y), "THE", fill=muted_color, font=sans_font)
-    the_bbox = draw.textbbox((x, y), "THE", font=sans_font)
-    marker_y = the_bbox[3] + s(4)
-    draw.text((x, marker_y), "MARKER", fill=fg_color, font=serif_font)
-    marker_bbox = draw.textbbox((x, marker_y), "MARKER", font=serif_font)
-    group_y = marker_bbox[3] + s(2)
-    draw.text((x, group_y), "GROUP", fill=muted_color, font=sans_font)
-    return draw.textbbox((x, y), "THE", font=sans_font), marker_bbox, draw.textbbox((x, group_y), "GROUP", font=sans_font)
+def make_mark_tile(size, background, pole_color, flag_color, cup_color, transparent=False):
+    upscale = 4 if size <= 180 else 2
+    render_size = size * upscale
+    bg_color = (0, 0, 0, 0) if transparent else background
+    image = Image.new("RGBA", (render_size, render_size), bg_color)
+    draw = ImageDraw.Draw(image)
+
+    mark_width = int(render_size * 0.5)
+    mark_height = int(render_size * 0.8)
+    left = (render_size - mark_width) // 2 - int(render_size * 0.01)
+    top = (render_size - mark_height) // 2
+    draw_flag_mark(draw, left, top, mark_width, mark_height, pole_color, flag_color, cup_color)
+
+    if upscale > 1:
+        image = image.resize((size, size), RESAMPLE)
+
+    return image
 
 
 def make_full_logo(bg_color, fg_color, muted_color, accent_color, filename, transparent=False):
     serif_font = load_font(LORA, s(50))
     sans_font = load_font(POPPINS_MEDIUM, s(17))
-    mark_size = s(64)
-    gap = s(30)
+    metrics = get_wordmark_metrics(serif_font, sans_font, "full")
+    mark_width = s(64)
+    mark_height = s(98)
+    gap = s(24)
     pad_x = s(46)
-    pad_y = s(34)
+    pad_y = s(30)
 
-    temp = Image.new("RGBA", (s(1000), s(400)), (0, 0, 0, 0))
-    temp_draw = ImageDraw.Draw(temp)
-    wordmark_bbox = temp_draw.multiline_textbbox(
-        (0, 0), "THE\nMARKER\nGROUP", font=sans_font, spacing=s(8)
-    )
-    marker_bbox = temp_draw.textbbox((0, 0), "MARKER", font=serif_font)
-    wordmark_width = max(wordmark_bbox[2] - wordmark_bbox[0], marker_bbox[2] - marker_bbox[0])
-    wordmark_height = s(118)
-
-    width = pad_x * 2 + mark_size + gap + wordmark_width
-    height = pad_y * 2 + max(mark_size, wordmark_height)
+    width = pad_x * 2 + mark_width + gap + metrics["width"]
+    height = pad_y * 2 + max(mark_height, metrics["height"])
     background = (0, 0, 0, 0) if transparent else bg_color
     image = Image.new("RGBA", (width, height), background)
     draw = ImageDraw.Draw(image)
 
-    mark_cx = pad_x + mark_size // 2
-    mark_cy = height // 2 - s(6)
-    draw_monogram(draw, mark_cx, mark_cy, mark_size, fg_color, accent_color)
+    mark_left = pad_x
+    mark_top = (height - mark_height) // 2
+    draw_flag_mark(draw, mark_left, mark_top, mark_width, mark_height, fg_color, accent_color, accent_color)
 
-    wordmark_x = pad_x + mark_size + gap
-    wordmark_y = pad_y
-    draw.text((wordmark_x, wordmark_y), "THE", fill=muted_color, font=sans_font)
-    draw.text((wordmark_x, wordmark_y + s(22)), "MARKER", fill=fg_color, font=serif_font)
-    draw.text((wordmark_x, wordmark_y + s(76)), "GROUP", fill=muted_color, font=sans_font)
+    wordmark_x = pad_x + mark_width + gap
+    wordmark_y = (height - metrics["height"]) // 2
+    draw_wordmark(
+        draw,
+        wordmark_x,
+        wordmark_y,
+        fg_color,
+        muted_color,
+        serif_font,
+        sans_font,
+        variant="full",
+        centered=True,
+    )
 
     save_image(image, filename, save_to_site=True)
 
@@ -162,41 +251,42 @@ def make_full_logo(bg_color, fg_color, muted_color, accent_color, filename, tran
 def make_stacked_logo(bg_color, fg_color, muted_color, accent_color, filename):
     serif_font = load_font(LORA, s(42))
     sans_font = load_font(POPPINS_MEDIUM, s(15))
-    mark_size = s(72)
+    metrics = get_wordmark_metrics(serif_font, sans_font, "stacked")
+    mark_width = s(76)
+    mark_height = s(112)
+    gap = s(20)
     pad = s(50)
 
-    temp = Image.new("RGBA", (s(600), s(500)), (0, 0, 0, 0))
-    temp_draw = ImageDraw.Draw(temp)
-    marker_bbox = temp_draw.textbbox((0, 0), "MARKER", font=serif_font)
-    group_bbox = temp_draw.textbbox((0, 0), "GROUP", font=sans_font)
-
-    width = max(mark_size, marker_bbox[2], group_bbox[2]) + pad * 2
-    height = pad * 2 + mark_size + s(72)
+    width = max(mark_width, metrics["width"]) + pad * 2
+    height = pad * 2 + mark_height + gap + metrics["height"]
     image = Image.new("RGBA", (width, height), bg_color)
     draw = ImageDraw.Draw(image)
 
-    cx = width // 2
-    draw_monogram(draw, cx, pad + mark_size // 2, mark_size, fg_color, accent_color)
-    draw.text((cx - temp_draw.textbbox((0, 0), "THE", font=sans_font)[2] // 2, pad + mark_size + s(8)), "THE", fill=muted_color, font=sans_font)
-    draw.text((cx - marker_bbox[2] // 2, pad + mark_size + s(26)), "MARKER", fill=fg_color, font=serif_font)
-    draw.text((cx - group_bbox[2] // 2, pad + mark_size + s(74)), "GROUP", fill=muted_color, font=sans_font)
+    mark_left = (width - mark_width) // 2
+    draw_flag_mark(draw, mark_left, pad, mark_width, mark_height, fg_color, accent_color, accent_color)
+    draw_wordmark(
+        draw,
+        (width - metrics["width"]) // 2,
+        pad + mark_height + gap,
+        fg_color,
+        muted_color,
+        serif_font,
+        sans_font,
+        variant="stacked",
+        centered=True,
+    )
 
     save_image(image, filename)
 
 
 def make_icon(filename, background, fg_color, accent_color, size=512, transparent=False):
-    bg = (0, 0, 0, 0) if transparent else background
-    image = Image.new("RGBA", (size, size), bg)
-    draw = ImageDraw.Draw(image)
-    draw_monogram(draw, size // 2, size // 2 - int(size * 0.03), int(size * 0.5), fg_color, accent_color)
+    image = make_mark_tile(size, background, fg_color, accent_color, accent_color, transparent=transparent)
     save_image(image, filename)
 
 
 def make_favicons():
     for size in (32, 64, 180):
-        image = Image.new("RGBA", (size, size), NAVY)
-        draw = ImageDraw.Draw(image)
-        draw_monogram(draw, size // 2, size // 2 - 1, int(size * 0.66), WHITE, COPPER)
+        image = make_mark_tile(size, NAVY, WHITE, COPPER, COPPER)
 
         if size == 32:
             save_image(image, "favicon.png", save_to_site=True)
@@ -208,22 +298,20 @@ def make_favicons():
 
 def make_social_profile():
     size = 400
-    image = Image.new("RGBA", (size, size), NAVY)
-    draw = ImageDraw.Draw(image)
-    draw_monogram(draw, size // 2, size // 2 - 8, int(size * 0.48), WHITE, COPPER)
+    image = make_mark_tile(size, NAVY, WHITE, COPPER, COPPER)
     save_image(image, "social-profile.png")
 
 
 def make_email_signature():
     serif_font = load_font(LORA, 28)
-    width, height = 360, 72
+    width, height = 390, 78
     image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(image)
 
-    draw_monogram(draw, 28, height // 2 - 2, 34, NAVY, COPPER)
+    draw_flag_mark(draw, 12, 9, 36, 60, NAVY, COPPER, COPPER)
     text_bbox = draw.textbbox((0, 0), "THE MARKER GROUP", font=serif_font)
     text_y = (height - (text_bbox[3] - text_bbox[1])) // 2 - text_bbox[1]
-    draw.text((58, text_y), "THE MARKER GROUP", fill=NAVY, font=serif_font)
+    draw.text((64, text_y), "THE MARKER GROUP", fill=NAVY, font=serif_font)
     save_image(image, "email-signature.png")
 
 
@@ -237,7 +325,7 @@ def make_og_image():
     sans_font = load_font(POPPINS_REGULAR, 22)
 
     draw.rounded_rectangle([56, 56, width - 56, height - 56], radius=24, outline=(*COPPER, 80), width=2)
-    draw_monogram(draw, width // 2, 180, 104, WHITE, COPPER)
+    draw_flag_mark(draw, width // 2 - 42, 86, 84, 150, WHITE, COPPER, COPPER_LIGHT)
 
     title = "THE MARKER GROUP"
     title_bbox = draw.textbbox((0, 0), title, font=serif_font)
@@ -265,6 +353,7 @@ def make_brand_palette():
 
     draw.text((90, 74), "The Marker Group", fill=NAVY, font=title_font)
     draw.text((92, 150), "Brand palette and typography reference", fill=TEXT_MUTED, font=body_font)
+    draw_flag_mark(draw, width - 220, 62, 88, 146, NAVY, COPPER, COPPER_DARK)
 
     swatches = [
         ("Navy", "#0B1D35", NAVY),
