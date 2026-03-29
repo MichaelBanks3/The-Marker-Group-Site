@@ -1,4 +1,15 @@
+# OS files
 .DS_Store
+
+# Claude Code
+.claude/
+
+# Development tools
+generate_marker_group_logo.py
+docs/
+__pycache__/
+*.pyc
+
+# Misc
 UI progression/
 notes.md
-.claude/worktrees/
