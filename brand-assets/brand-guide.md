@@ -6,7 +6,7 @@ The Marker Group is a higher education go-to-market consultancy. The brand shoul
 
 ## Logo System
 
-The current identity is built around a geometric `M` monogram paired with a refined wordmark. The monogram gives you a compact mark for favicon, social, and avatar use, while the full wordmark carries best in website headers, decks, and documents.
+The current identity is built around a refined golf-flag mark paired with a classic editorial wordmark. The flag keeps the brand tied to the "marker" idea without feeling sporty or novelty-driven, and it gives you a compact mark for favicon, social, and avatar use while the full wordmark carries best in website headers, decks, and documents.
 
 ### Core Logo Files
 
@@ -17,9 +17,9 @@ The current identity is built around a geometric `M` monogram paired with a refi
 | `logos/marker-group-logo-transparent.png` | Full logo when you need transparency |
 | `logos/marker-group-stacked-dark.png` | Vertical layouts on dark backgrounds |
 | `logos/marker-group-stacked-light.png` | Vertical layouts on light backgrounds |
-| `logos/icon-navy.png` | Monogram-only icon on navy background |
-| `logos/icon-white.png` | Monogram-only icon on white background |
-| `logos/icon-transparent.png` | Transparent monogram icon |
+| `logos/icon-navy.png` | Golf-flag icon on navy background |
+| `logos/icon-white.png` | Golf-flag icon on white background |
+| `logos/icon-transparent.png` | Transparent golf-flag icon |
 
 ### Web and Social Assets
 
@@ -34,7 +34,7 @@ The current identity is built around a geometric `M` monogram paired with a refi
 
 ### Usage Rules
 
-- Keep clear space around the logo equal to the monogram height.
+- Keep clear space around the logo equal to the flag-mark height.
 - Prefer the full wordmark for the website, proposals, and client-facing documents.
 - Use the icon-only mark for favicons, profile images, and small-format placements.
 - Do not stretch, recolor, rotate, outline, or add effects to the logo.
